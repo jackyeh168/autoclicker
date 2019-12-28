@@ -751,6 +751,9 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <connections>
+                                            <action selector="modifyCount:" target="XfG-lQ-9wD" id="kfh-Za-Kbp"/>
+                                        </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P81-01-ujC">
                                         <rect key="frame" x="-6" y="41" width="81" height="32"/>

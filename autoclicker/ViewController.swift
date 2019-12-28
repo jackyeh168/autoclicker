@@ -25,13 +25,23 @@ class ViewController: NSViewController {
     @IBOutlet weak var remainedCount: NSTextField!
     
     
+    @IBAction func modifyCount(_ sender: Any) {
+        let count = NSDecimalNumber.init(string: self.clickCount.stringValue).intValue
+        self.setRemainedCount(c: count)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: self.keyDown)
+//        NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: self.keyDown)
     }
 
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        window.acceptsMouseMovedEvents = true
+    }
+    
     override func keyDown(with event: NSEvent) {
         print(event.keyCode)
         if event.keyCode == 96 {
@@ -62,18 +72,22 @@ class ViewController: NSViewController {
         if self.remained <= 0 {
             return
         }
-            
-        self.remained -= 1
         
+        self.setRemainedCount(c: self.remained - 1)
+        
+        let source = CGEventSource.init(stateID: .hidSystemState)
         let point = CGPoint(x:self.mouseLocation.x, y:self.mouseLocation.y)
-        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
-        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
-        print (point)
-        mouseDown?.post(tap: .cghidEventTap)
-        mouseUp?.post(tap: .cghidEventTap)
+        let mouseDown = CGEvent(mouseEventSource: source, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
+//        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
         
-        let sec = NSDecimalNumber.init(string: self.speedNum.stringValue).intValue
+        let sec = NSDecimalNumber.init(string: self.speedNum.stringValue).intValue*1000
+        
+        mouseDown?.post(tap: .cghidEventTap)
         usleep(useconds_t(sec))
+        
+        //        mouseUp?.post(tap: .cghidEventTap)
+        //        usleep(useconds_t(sec))
+        
         
         simulateMouseClick()
     }
@@ -83,5 +97,6 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+    
 }
 
