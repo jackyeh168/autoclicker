@@ -710,10 +710,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="udD-7C-x12">
-                                <rect key="frame" x="56" y="90" width="100" height="127"/>
+                                <rect key="frame" x="56" y="42" width="100" height="175"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UTR-Jw-paL">
-                                        <rect key="frame" x="-2" y="111" width="74" height="16"/>
+                                        <rect key="frame" x="-2" y="159" width="74" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Speed (ms)" id="CYV-Fh-SYP">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -721,16 +721,19 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qQX-sa-JkX">
-                                        <rect key="frame" x="0.0" y="82" width="100" height="21"/>
+                                        <rect key="frame" x="0.0" y="130" width="100" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="200" drawsBackground="YES" id="egX-rS-fm2">
-                                            <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="3G3-04-YQU"/>
+                                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="6JS-ka-l0H">
+                                                <real key="minimum" value="100"/>
+                                                <real key="maximum" value="5000"/>
+                                            </numberFormatter>
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VKZ-KP-Vuw">
-                                        <rect key="frame" x="-2" y="58" width="41" height="16"/>
+                                        <rect key="frame" x="-2" y="106" width="41" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Count" id="ZHw-zt-bcS">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -738,23 +741,51 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tlz-IE-3Tw">
-                                        <rect key="frame" x="0.0" y="29" width="100" height="21"/>
+                                        <rect key="frame" x="0.0" y="77" width="100" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="10" drawsBackground="YES" id="tWo-Eu-JJw">
-                                            <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="5q5-IY-PVD"/>
+                                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="qcJ-u6-Sim">
+                                                <real key="minimum" value="1"/>
+                                                <real key="maximum" value="1000"/>
+                                            </numberFormatter>
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P81-01-ujC">
-                                        <rect key="frame" x="-6" y="-7" width="81" height="32"/>
+                                        <rect key="frame" x="-6" y="41" width="81" height="32"/>
                                         <buttonCell key="cell" type="push" title="START" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hxe-IZ-baq">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="clickButton:" target="XfG-lQ-9wD" id="0da-Cx-Mgl"/>
+                                        </connections>
                                     </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I32-t9-IWE">
+                                        <rect key="frame" x="-2" y="24" width="104" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Remained Count" id="dlc-MC-nv2">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Np-H2-G1N">
+                                        <rect key="frame" x="-2" y="0.0" width="13" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="l9r-lb-X5U">
+                                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="m4s-dw-Cf7">
+                                                <real key="minimum" value="0.0"/>
+                                                <real key="maximum" value="1000"/>
+                                            </numberFormatter>
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
@@ -767,10 +798,18 @@
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="P81-01-ujC" id="MVJ-FS-7QZ"/>
+                        <outlet property="clickCount" destination="Tlz-IE-3Tw" id="Lac-ZY-JrU"/>
+                        <outlet property="remainedCount" destination="6Np-H2-G1N" id="J9E-wN-i6Q"/>
+                        <outlet property="speedNum" destination="qQX-sa-JkX" id="D1R-71-ZNV"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
