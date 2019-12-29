@@ -75,26 +75,31 @@ class ViewController: NSViewController {
         
         self.setRemainedCount(c: self.remained - 1)
         
-        let source = CGEventSource.init(stateID: .hidSystemState)
-        let point = CGPoint(x:self.mouseLocation.x, y:self.mouseLocation.y)
-        let mouseDown = CGEvent(mouseEventSource: source, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
-//        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
+//        let source = CGEventSource.init(stateID: .hidSystemState)
         
+        
+        let x = self.mouseLocation.x
+        let y = NSHeight(NSScreen.screens[0].frame) - self.mouseLocation.y
+        
+        
+        
+        let point = CGPoint(x:x, y:y)
+        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
+        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left)
+         
         let sec = NSDecimalNumber.init(string: self.speedNum.stringValue).intValue*1000
         
         mouseDown?.post(tap: .cghidEventTap)
+        mouseUp?.post(tap: .cghidEventTap)
         usleep(useconds_t(sec))
-        
-        //        mouseUp?.post(tap: .cghidEventTap)
-        //        usleep(useconds_t(sec))
-        
-        
+
         simulateMouseClick()
     }
     
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
+            
         }
     }
     
