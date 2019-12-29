@@ -34,7 +34,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: self.keyDown)
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: self.keyDown)
     }
 
     override func viewWillAppear() {
@@ -43,14 +43,13 @@ class ViewController: NSViewController {
     }
     
     override func keyDown(with event: NSEvent) {
-        print(event.keyCode)
         if event.keyCode == 96 {
-             switchStatus()
+            self.switchStatus()
          }
     }
     
     @IBAction func clickButton(_ sender: Any) {
-        switchStatus()
+        self.switchStatus()
     }
     
     func switchStatus() {
@@ -59,7 +58,7 @@ class ViewController: NSViewController {
         } else {
             let count = NSDecimalNumber.init(string: self.clickCount.stringValue).intValue
             self.setRemainedCount(c: count)
-            simulateMouseClick()
+            self.simulateMouseClick()
         }
     }
     
@@ -75,13 +74,8 @@ class ViewController: NSViewController {
         
         self.setRemainedCount(c: self.remained - 1)
         
-//        let source = CGEventSource.init(stateID: .hidSystemState)
-        
-        
         let x = self.mouseLocation.x
         let y = NSHeight(NSScreen.screens[0].frame) - self.mouseLocation.y
-        
-        
         
         let point = CGPoint(x:x, y:y)
         let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left)
@@ -93,7 +87,7 @@ class ViewController: NSViewController {
         mouseUp?.post(tap: .cghidEventTap)
         usleep(useconds_t(sec))
 
-        simulateMouseClick()
+        self.simulateMouseClick()
     }
     
     override var representedObject: Any? {
